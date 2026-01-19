@@ -1,0 +1,124 @@
+\section{Methods}
+
+\subsection{Model Description}
+
+The ICOsahedral Non-hydrostatic Earth System Model (ICON-ESM) is a Earth System Model developed by the Max Planck Institute for Meteorology (MPI-M) for climate predictions (\citet{Jungclaus2022a}).
+The Model is based on the ICON Framework from the German Weather Service (Deutscher Wetterdienst, DWD), the MPI-M, the Karlsruhe Institute of Technology (KIT) and other partner institutions.
+ICON-ESM consists of different components for the different parts of the Earth System, combining the ocean ICON-O, the atmosphere ICON-A and the Land ICON-Land in one coupled Model.
+Biogeochemical aspects of the ocean in the ICON-ESM are calculated by the ocean biogeochemistry module Hamburg Ocean Carbon Cycle (HAMOCC; \citet{ilyinaGlobalOceanBiogeochemistry2013}).
+
+Apart from the original model configuration, multiple variations have been developed focusing on different aspects of the earth system.
+At the MPI-M and the Helmholtz Zentrum Hereon a new version of ICON-O has been developed, called ICON-Coast (\citet{mathisSeamlessIntegrationCoastal2022}).
+% ICON-Coast is a advancement of the ICON-Ocean model used in the newest iteration of the Earth System Model from the Max Planck Institute for Meteorology.
+With ICON-Coast several processes specifically important in coastal systems are implemented in ICON-O and it also introduces a telescopic grid with the possibility to have different mesh sizes in the shelf seas than in the open ocean (Figure \ref{fig:ICON_coast_grid}).
+
+\subsubsection{ICON-O Description}
+
+ICON-O is a global ocean model based on the ICON Framework. The Oceans dynamics in ICON-O are represented by conservative discretization of the ocean primitive equations on a unstructured triangular grid. 
+Here, a quick description of ICON-O is given focusing on the processes most relevant for this study and to put in context the advancements of ICON-Coast \citet{mathisSeamlessIntegrationCoastal2022}.
+The variables in the grid are in a C-type staggering, locating the scalar variables in the center of each cell and normal components of flux variables on the cell boundaries (\citet{kornFormulationUnstructuredGrid2017} \citet{logemannGlobalTideSimulations2021})
+The biogeochemical component of ICON-O is HAMOCC with its CMIP6 configuration. 
+The marine biology is represented in a extended NPZD-type model (\textcolor{red}{REFERENCE TO THEORY?}) (\citet{Six1996}) and carbon and nutrient sequestration by phytoplankton is controlled by light availability, water temperature and macro nutrient limitation of phosphate and nitrate assuming Redfield stoichiometry (\textcolor{red}{REFERENCE TO THEORY?}).
+% Bacterial decomposition, denitrification and sulfate reduction are distinguished for oxic, sub- and anoxic conditions.
+% The Nitrogen Cycle has a prognostic representation of N-fixation at the sea surface by cyanobacteria.14:26
+Additionally a 3-dimensional sediment model is included in ICON-O to account for deposition and dissolution of particulate organic matter at the sea floor and benthic pore water exchange.
+
+\subsubsection{ICON-Coast advancements}
+
+% Restructure this later into Physical (grid,tides), Sediment, Biogeochemistry/carbon export, Riverine fluxes
+
+In ICON-Coast several processes which are relevant for the coastal ocean are added as well as a telescopic grid which introduces a higher horizontal resolution depending on the water depth. With this improvements the goal is to catch specific coastal phenomenon and describe the important part of the coastal ocean better in the global models.
+Among the changes are the following:
+Tidal currents are implemented to include specific tidal dynamics including partial tide interactions but disregarding effects of loading and self-attraction. (\textcolor{red}{research what all this means})
+Sediment resuspension is included as a dependence on mean sediment density and grain size in each bottom cell. The resuspension also depends on the erosion depth which is deducted from the bottom current velocities of the model. In ICON-Coast the resuspension is not only including the erosion of solid constituents but also the mixing of pore water released by the bottom erosion.
+The export dynamics of biogenically bound carbon are represented by a scheme following Maerz et al (2020) and explicitly accounts for the influence of size, microstructure, heterogeneous composition, density and porosity of the aggregates on their settling velocities and exposure to transformation processes.
+While marine aggregates are explicitly represented, also a temperature dependence for remineralization and dissolution processes is introduced. To represent the changes and the effect of moving deposited matter by resuspension to different areas a temperature dependent remineralization is included.
+Also in the upper water column this approach is introduced for the organic matter.
+River mouths are introduced as point sources of riverine matter fluxes and freshwater.
+From rivers also terrestrial dissolved organic matter is introduced in the ocean. Since it is more refractory and has a higher carbon to nutrient ratio it has a different C:P ratio in the model and the mineralization of this new tracer is adjusted as well. 
+
+With these changes the coastal carbon cycle is represented in higher detail compared to ICON-O and it is expected that these changes will influence the coastal oceans chemistry, affecting acidification rates and the carbonate saturation.
+The processes introduced are interlinked to all other processes happening in the open and coastal ocean and therefore it is important to work with a model as holistic as possible to capture possible feedbacks between physical, chemical and biological processes.
+
+\begin{figure}[ht]
+    \centering
+    \includegraphics[width=0.75\linewidth]{figures/ICON_coast_grid.png}
+    \caption{Non-uniform grid configuration used in ICON-Coast simulations. In this example, the highest horizontal resolution in the coastal ocean and continental margins is 10 km. The degree of grid refinement is locally dependent on the distance to the coastline, the water depth and the slope of the bottom topography (\citet{logemannGlobalTideSimulations2021} \citet{mathisSeamlessIntegrationCoastal2022})}
+    \label{fig:ICON_coast_grid}
+\end{figure}
+
+% \begin{figure}[ht]
+%     \centering
+%     \includegraphics[width=0.75\linewidth]{figures/mean_biomes.png}
+%     \caption{Mean biome map created from mean climatologies of maxMLD, SST, summer Chl a, and maximum ice fraction. Dark blue: ice biome (ICE); cyan: subpolar seasonally stratified biome (SPSS); green: subtropical seasonally stratified biome (STSS); yellow: subtropical permanently stratified biome (STPS); orange: equatorial biome (EQU). White indicates ocean areas that do not fit the criteria for any biome and are excluded from further analysis. \citet{fayGlobalOpenoceanBiomes2014}}
+%     \label{fig:mean_biomes}
+% \end{figure}
+
+
+\subsection{Model Output and variables}
+
+\textcolor{red}{Draft- will be refined}
+
+In this project, we will use a coupled run of the ICON-Coast model with a grid size ranging from $80\; \text{km}$ in the open ocean to $10\; \text{km}$ in the coastal land-ocean interface.
+The model run which will be analyzed in this project is a run from 1900 to 2010 with monthly output, allowing to capture the development of variables through the 20th century.
+
+
+Through HAMOCC multiple biogeochemical variables are available for analysis.
+\newline
+Dissolved Inorganic Carbon (DIC) is output directly by the model and refers to the total amount of carbon dioxide $\ce{CO_2}$ (plus carbonic acid $\ce{H_2CO_3}$) , bicarbonate ions $\ce{HCO_3^-}$ and carbonate ions $\ce{CO_3^2-}$ in seawater. 
+DIC is strongly connected to the acidification of seawater since the pH is affected by the ratio the three constituents to each other.
+\begin{equation*}
+  \text{DIC} = \left[\ce{CO_2}\right] + \left[\ce{HCO_3^-}\right] + \left[\ce{CO_3^2-}\right]
+\end{equation*}
+
+Total Alkalinity (TA) is the capacity of water to resist acidification.
+It is related to the charge balance in sea water and is calculated as follows:
+\begin{equation*}
+  \text{A}_\text{T} = \left[\ce{HCO_3^-}\right] + \left[\ce{CO_3^2-}\right] + \left[\ce{B(OH)_4^-}\right] + \left[\ce{H^+}\right] + \text{minor compounds}
+\end{equation*}
+Alkalinity is affected by the remineralization of organic matter by micro algea, precipitation and by dissolution of calcium carbonate \citet{wolf-gladrowTotalAlkalinityExplicit2007} which links it directly to ocean acidification and the carbonate saturation state.
+
+Temperature (T) and Salinity (S) are  variables extracted from the physical part of ICON-O, as physical variables they have a influence on biological activity and chemical properties and therefore affect acidification indirectly.
+
+Partial pressure of carbon dioxide ($\ce{pCO_2}$) measures the contribution of carbon dioxide to the total gas pressure and therefore give insights to the air-sea carbon flux.
+Due to the formation of carbonic acid and further chemical reactions, $\ce{pCO_2}$ deviates slightly from the expected values from the classical Henry's Law.
+
+The carbonate saturation state ($\Omega$) is not directly calculated by the model but can be diagnosed by using carbonate ion concentration and the solubility product $K_\text{Sp}^*$.
+\begin{align*}
+  \Omega &= \frac{\left[\ce{Ca^2+}\right]_\text{SW} \times \left[ \ce{CO_3^-} \right]_\text{SW}}{K_\text{Sp}^*} \\
+  K_\text{Sp}^* &= K_\text{Sp}^*(T,S,p)
+\end{align*}
+Where the solubility product $K_\text{Sp}^*$ depends on the physical properties of the surrounding water and the concentration of Calcium ions is assumed constant in the ocean.
+
+\subsection{Coastal vs Open-Ocean Separation}
+
+
+\subsection{Analysis Strategy}
+
+\subsubsection{Trend and Variability Analysis}
+
+\subsubsection{Conceptual Driver decomposition}
+
+For the decomposition of how the signal is influenced by different drivers I will use the approach from Takahashi et al. (\citet{takahashiSeasonalVariationCO21993}).
+Takahashi originally decomposed the change of partial pressure of \ce{CO2} into the different changes driven by temperature, salinity, alkalinity and dissolved inorganic carbon.
+\begin{equation}
+  \Delta p \ce{CO2} \equiv p\ce{CO2} \left[ \gamma_T \Delta T + \gamma_S \frac{\Delta S}{S} + \gamma_{Alk} \frac{\Delta Alk}{Alk} + \gamma_{DIC} \frac{\Delta DIC}{DIC} \right] + \epsilon
+\end{equation}
+For his approach Takahashi used different Revelle (DIC) and Buffer (general) factors to get the right factors for the partial derivatives.
+
+
+Multivariate linear Regression
+
+\begin{equation}
+  y_i = \beta + \beta_1 x_{i1} + \beta_2 x_{i2} + ... + \beta_p x_{ip} + \epsilon
+\end{equation}
+  with $i = n$ Observations.
+
+There are multiple assumptions following from the multivariate linear Regression approach.
+\begin{itemize}
+  \item There is a linear relationship between the dependent variable and the independent variables 
+  \item The independent variables are uncorrelated 
+  \item The samples of the dependent variable are chosen randomly
+  \item Residuals are normally distributed with a mean of zero and a variance of $\sigma$
+\end{itemize}
+

@@ -1,0 +1,96 @@
+\documentclass[11pt]{article}
+\renewcommand{\baselinestretch}{1.5}
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+\usepackage[version=4]{mhchem}
+
+%\usepackage[backend=biber,style=science]{biblatex}
+%\addbibresource{~/Library/texmf/bibtex/bib/Zotero.bib}
+
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+
+
+\title{Master Thesis FIRST IDEAS}
+\author{Konstantin Mrozik}
+
+\begin{document}
+
+\begin{titlepage}
+    \begin{center}
+        \vspace*{1cm}
+            
+        \Huge
+        \textbf{SPEC Report}
+            
+        \vspace{0.5cm}
+        \LARGE
+        Ocean acidification and carbonate saturation in the coastal ocean
+            
+        \vspace{1.5cm}
+            
+        \textbf{Konstantin Mrozik}
+        
+        \vspace{0.8cm}
+        Supervisors:\\
+        Tatiana Ilyina\\
+        Moritz Mathis
+            
+        \vfill
+            
+        Report for the SPECIALIZATION Course\\
+        Ocean and Climate Physics Master
+            
+        \vspace{0.8cm}
+            
+        \includegraphics[width=0.4\textwidth]{uhh-logo-insert}
+            
+        \Large
+        Department Name\\
+        University of Hamburg\\
+        Germany\\
+        \today
+            
+    \end{center}
+\end{titlepage}
+
+\tableofcontents   
+
+\newpage
+
+
+\begin{abstract}
+With higher atmospheric $\ce{CO2}$ levels, the amount of dissolved inorganic carbon in the world's oceans also steadily increases. Due to this increase in oceanic carbon, the ocean's pH has declined measurably since the Industrial Revolution. With this thesis approach, I want to investigate the anthropogenic impact on these coastal systems and especially regarding biogeochemical processes.
+
+The ocean's pH has a major impact on calcifying species in the water and is therefore important for the entire food chain. The coastal ocean is a hotspot for biogeochemical processes due to high biological activity and the chemical influx from the land. Even though ocean acidification has been studied on a large scale in Earth system models, the coastal area is usually poorly represented in models, especially in terms of its biogeochemistry.
+
+With this project, I aim to use a new model representation of the coastal oceans and specifically their biogeochemistry to investigate the Carbonate Saturation State ($\Omega$). ICON-Coast offers higher coastal resolution and improved biogeochemical parametrisations. The Carbonate saturation state links increases in dissolved inorganic carbon to key biogeochemical processes.
+A global view is needed to identify vulnerable regions before zooming into case studies; therefore, by first investigating on the global scale, I aim to distinguish particularly vulnerable areas to take a deeper look into the regional influences. I will specifically consider the different parameters influencing the Carbonate Saturation State and its variability and extreme events of the past.
+\end{abstract}
+ 
+
+\include{content/introduction}
+\include{content/theory}
+\include{content/methods}
+
+
+\newpage
+
+% \bibliographystyle{apalike}
+\bibliography{Zotero}
+%\bibliography{~/Library/texmf/bibtex/bib/Zotero}
+\newpage
+
+%\printbibliography
+
+\end{document}
