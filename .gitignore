@@ -1,5 +1,26 @@
 #Gitignore
 
-# Ignore all unneccessary latex files
-.aux .bit .blg .bbl .lof .log .lot .glo .glx .gxg .gxs .idx .ilg .ind .out .url .svn .toc
+# LaTeX build artifacts
+*.aux
+*.bit
+*.blg
+*.bbl
+*.lof
+*.log
+*.lot
+*.glo
+*.glx
+*.gxg
+*.gxs
+*.idx
+*.ilg
+*.ind
+*.out
+*.url
+*.toc
 
+# Apples DS_Store
+.DS_Store
+
+# Miscellaneous
+/build
